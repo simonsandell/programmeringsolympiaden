@@ -2,8 +2,8 @@ import random
 random.seed();
 
 of = open("./input.in","w");
-N = random.randint(3,pow(10,5));
-H = random.randint(1,pow(10,6));
+N = random.randint(3,pow(10,3));
+H = random.randint(1,pow(10,3));
 x_old = 0;
 of.write(str(N)+" "+str(H)+"\n");
 of.write("0 0 " +str(random.randint(0,1))+"\n");

@@ -1,6 +1,4 @@
 #include <iostream>
-
-
 //drop above when submitting
 #include <vector>
 #include <pair>
