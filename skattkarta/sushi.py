@@ -1,0 +1,56 @@
+import fileinput
+
+data =[];
+i = 0;
+for line in fileinput.input():
+    if (i==0):
+        r = int(line)
+    if (i==1):
+        c = int(line);
+        for rn in range(r):
+            data.append([]);
+            for cn in range(c):
+                data[rn].append(0);
+
+    if (i >1):
+        for x in range(c):
+            data[i-2][x] = line[x]
+    i +=1;
+
+
+pos = (0,0)
+visited = {pos:True};
+result = "";
+while True:
+    move = data[pos[0]][pos[1]]
+    if move == r'<':
+        newpos = (pos[0],pos[1]-1);
+        if newpos in visited:
+            result = "cykel";
+            break
+    if move == r'>':
+        newpos = (pos[0],pos[1]+1);
+        if newpos in visited:
+            result = "cykel";
+            break
+    if move == r'v':
+        newpos = (pos[0]+1,pos[1]);
+        if newpos in visited:
+            result = "cykel";
+            break
+    if move == r'^':
+        newpos = (pos[0]-1,pos[1]);
+        if newpos in visited:
+            result = "cykel";
+            break
+    if move == r'A':
+        result = "sushi"
+        break
+    if move == r'B':
+        result = "samuraj"
+        break
+    visited[newpos] = True;
+    pos = newpos
+
+
+print(result)
