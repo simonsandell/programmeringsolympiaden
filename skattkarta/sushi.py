@@ -1,56 +1,80 @@
+"""
+asdf
+"""
 import fileinput
 
-data =[];
-i = 0;
+DATA = []
+i = 0
+
 for line in fileinput.input():
-    if (i==0):
+    if i == 0:
         r = int(line)
-    if (i==1):
-        c = int(line);
+
+    if i == 1:
+        c = int(line)
+
         for rn in range(r):
-            data.append([]);
+            DATA.append([])
+
             for cn in range(c):
-                data[rn].append(0);
+                DATA[rn].append(0)
 
-    if (i >1):
+    if i > 1:
         for x in range(c):
-            data[i-2][x] = line[x]
-    i +=1;
+            DATA[i-2][x] = line[x]
+    i += 1
 
 
-pos = (0,0)
-visited = {pos:True};
-result = "";
+POS = (0, 0)
+VISITED = {POS:True}
+RES = ""
+
 while True:
-    move = data[pos[0]][pos[1]]
-    if move == r'<':
-        newpos = (pos[0],pos[1]-1);
-        if newpos in visited:
-            result = "cykel";
+    MOVE = DATA[POS[0]][POS[1]]
+
+    if MOVE == r'<':
+        NEW_POS = (POS[0], POS[1]-1)
+
+        if NEW_POS in VISITED:
+            RES = "cykel"
+
             break
-    if move == r'>':
-        newpos = (pos[0],pos[1]+1);
-        if newpos in visited:
-            result = "cykel";
+
+    if MOVE == r'>':
+        NEW_POS = (POS[0], POS[1]+1)
+
+        if NEW_POS in VISITED:
+            RES = "cykel"
+
             break
-    if move == r'v':
-        newpos = (pos[0]+1,pos[1]);
-        if newpos in visited:
-            result = "cykel";
+
+    if MOVE == r'v':
+        NEW_POS = (POS[0]+1, POS[1])
+
+        if NEW_POS in VISITED:
+            RES = "cykel"
+
             break
-    if move == r'^':
-        newpos = (pos[0]-1,pos[1]);
-        if newpos in visited:
-            result = "cykel";
+
+    if MOVE == r'^':
+        NEW_POS = (POS[0]-1, POS[1])
+
+        if NEW_POS in VISITED:
+            RES = "cykel"
+
             break
-    if move == r'A':
-        result = "sushi"
+
+    if MOVE == r'A':
+        RES = "sushi"
+
         break
-    if move == r'B':
-        result = "samuraj"
+
+    if MOVE == r'B':
+        RES = "samuraj"
+
         break
-    visited[newpos] = True;
-    pos = newpos
+    VISITED[NEW_POS] = True
+    POS = NEW_POS
 
 
-print(result)
+print(RES)

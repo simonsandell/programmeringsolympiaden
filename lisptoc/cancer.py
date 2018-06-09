@@ -1,22 +1,28 @@
+"""
+docstring
+"""
 import fileinput
 
 for line in fileinput.input():
-    data = line;
-data = data.rstrip("\n")
-data = data.rsplit(" ");
-result = "";
-ns= len(data);
-for i in range(ns):
-    x = data[i];
-    cb = x.find(")");
+    DATA = line
+DATA = DATA.rstrip("\n")
+DATA = DATA.rsplit(" ")
+RES = ""
+NUM_LINES = len(DATA)
+
+for i in range(NUM_LINES):
+    x = DATA[i]
+    cb = x.find(")")
+
     if (x[0] == "(" and cb != -1):
-        result += x[1:cb]+"("+x[cb:]
-    elif (x[0] == "("):
-        result += x[1:]+"(";
+        RES += x[1:cb]+"("+x[cb:]
+    elif x[0] == "(":
+        RES += x[1:]+"("
     elif x[-1] == ")":
-        result += x[:-1]+")";
-        if (i < (ns -1)):
-            result += ", ";
+        RES += x[:-1]+")"
+
+        if i < (NUM_LINES -1):
+            RES += ", "
     else:
-        result+= x + ", ";
-print(result)
+        RES += x + ", "
+print(RES)
